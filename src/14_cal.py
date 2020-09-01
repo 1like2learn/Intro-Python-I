@@ -30,3 +30,59 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def calFunction():
+  now = datetime.now()
+  # print("\n now.month", now.month, type(now.month))
+  # print("\n now.year", now.year, type(now.year))
+  # print("\n length of system arguments", len(sys.argv))
+  # print("\ntype of arguments", type( int(sys.argv[1])))
+  if len(sys.argv) == 1:
+    # print("\ncurrent month and year used")
+    month = now.month
+    year = now.year
+
+  elif len(sys.argv) == 2:
+    arg1 = sys.argv[1]
+    # print("\ninput month and current year used")
+    year = now.year
+    if not arg1.isdigit() or 1 < int(arg1) or int(arg1) < 12:
+      return "\nPlease input a number between 1 and 12.\n"
+    else:
+      # print("\ninput value set for month")
+      month = int(arg1)
+
+  elif len(sys.argv) == 3:
+    arg1 = sys.argv[1]
+    arg2 = sys.argv[2]
+    # print("too low?", 1 > int(arg1), arg1)
+    # print("too high?", int(arg1) > 12, arg1)
+    # print("\ninput month and year used")
+    if not arg1.isdigit() or 1 > int(arg1) or int(arg1) > 12:
+      return "\nPlease input a number between 1 and 12 for your first argument.\n"
+    else:
+      # print("\ninput value set for month")
+      month = int(arg1)
+
+    if not arg2.isdigit():
+      return "\nPlease input a number for year.\n"
+    else:
+      # print("\ninput value set for year")
+      year = int(arg2)
+
+  # print("\nmonth", month, type(month))
+  # print("\nyear", year, type(year), "\n")
+  return calendar.month(year, month)
+  # return month
+
+print(calFunction())
+
+# initializing the yearn and month number
+# year = 2000
+# month = 1
+# # getting the calendar of the month
+# print(calendar.month(year, month))
+
+# now = datetime.now()
+# print(now.month)
+# print(now.year)
